@@ -1,5 +1,5 @@
-var hourArray = [8,9,10,11,12,13,14,15,16,17];
-var hoursObject = {
+var hourArray = [8,9,10,11,12,13,14,15,16,17]; // array for iterating through hours
+var hoursObject = { // object to store saved items
     8:"",
     9:"",
     10:"",
@@ -20,17 +20,17 @@ function initStorage(){ // load hoursObject with existing values, if they exist
 }
 initStorage() // get latest stored values
 
-var date = Date()
+var date = Date() //get date attr
 
-var dateString = moment(date).toLocaleString()
+var dateString = moment(date).toLocaleString() // get a readable string
 
 var container = $(".container");
 
-var formattedDate = dateString.slice(0,16);
-var currentHour = dateString.slice(16,18);
+var formattedDate = dateString.slice(0,16); // get the date string up til the time
+var currentHour = dateString.slice(16,18); // get the hour element of the date string
 
-$("#currentDay").html(formattedDate);
-var now = moment()
+
+$("#currentDay").html(formattedDate); // put the current date at the top of the screen
 
 
 hourArray.forEach(function(i){
@@ -54,7 +54,7 @@ hourArray.forEach(function(i){
     // assign color attributes based on current time
     if(i< currentHour){
         descr.attr("class", "past " +descr.attr("class"));
-    } else if(i === currentHour){
+    } else if(i.toString() === currentHour){
         descr.attr("class", "present " + descr.attr("class"));
     } else {
         descr.attr("class", "future " + descr.attr("class"));
