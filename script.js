@@ -10,19 +10,19 @@ var hoursObject = { // object to store saved items
     15:"",
     16:"",
     17:"",
-}
+};
 
 function initStorage(){ // load hoursObject with existing values, if they exist
 
     if(JSON.parse(localStorage.getItem("schedule"))){
         hoursObject = JSON.parse(localStorage.getItem("schedule"));
     }
-}
-initStorage() // get latest stored values
+};
+initStorage(); // get latest stored values
 
-var date = Date() //get date attr
+var date = moment(); //get date attr
 
-var dateString = moment(date).toLocaleString() // get a readable string
+var dateString = moment(date).toLocaleString(); // get a readable string
 
 var container = $(".container");
 
@@ -40,7 +40,7 @@ hourArray.forEach(function(i){
     //format time label for consistency
     if (i < 10){
         i = "0" + i
-    }
+    };
 
     // dynamically generate list items
     var hour = $("<div>").attr({class: "hour col-sm-2"}).text(i + ":00");
@@ -58,20 +58,20 @@ hourArray.forEach(function(i){
         descr.attr("class", "present " + descr.attr("class"));
     } else {
         descr.attr("class", "future " + descr.attr("class"));
-    }
+    };
 
     //add elements to the markup
     tb.append(hour, descr, btn);    
     container.append(tb);
-})
+});
 
 $('.saveBtn').on("click", function(){
 
-    event.preventDefault();
+    event.preventDefault(); // dont refresh the page on click
 
     // save the new text to local storage
     var key = parseInt($(this).parent().attr("data-name")); // get the key of the save button used
     hoursObject[key] = $(this).parent().children(".textarea").val();   // update the value of the associated key
     localStorage.setItem("schedule", JSON.stringify(hoursObject));  // save the new object to local storage
 
-})
+});
