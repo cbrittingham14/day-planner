@@ -35,7 +35,7 @@ $("#currentDay").html(formattedDate); // put the current date at the top of the 
 
 hourArray.forEach(function(i){
 
-    var tb = $("<div>").attr("class", "timeblock row");
+    var tb = $("<div>").attr("class", "timeblock row"); //make a div for each hour of the workday
 
     //format time label for consistency
     if (i < 10){
